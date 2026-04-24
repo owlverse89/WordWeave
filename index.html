@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Weave</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="logo">
+      <span class="logo-icon">🧵</span>
+      <h1>Word Weave</h1>
+    </div>
+    <div class="header-stats">
+      <div class="stat-chip">
+        Best&nbsp;<span class="val" id="header-best">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════ HOME SCREEN ══════════════════════ -->
+  <section class="screen active" id="screen-home">
+
+    <div class="home-hero">
+      <h2>Chain words together.<br>How far can you go?</h2>
+      <p>The last part of each compound word becomes the start of the next. Build the longest chain you can before time runs out!</p>
+    </div>
+
+    <div class="chain-demo">
+      <span class="demo-word">sun</span>
+      <span class="demo-arrow">→</span>
+      <span class="demo-word">sun<span class="demo-link" style="background:rgba(255,255,255,0.3);color:white;font-size:0.7rem;">flower</span></span>
+      <span class="demo-arrow">→</span>
+      <span class="demo-word">flower<span class="demo-link" style="background:rgba(255,255,255,0.3);color:white;font-size:0.7rem;">pot</span></span>
+      <span class="demo-arrow">→</span>
+      <span class="demo-word">pot<span class="demo-link" style="background:rgba(255,255,255,0.3);color:white;font-size:0.7rem;">hole</span></span>
+      <span class="demo-arrow">→</span>
+      <span class="demo-word" style="opacity:0.5;border: 2px dashed white;">?</span>
+    </div>
+
+    <div class="how-to-box">
+      <h3>How to play</h3>
+      <ul>
+        <li><span class="icon">🔗</span> You're given a bridge word — type any compound word that starts with it</li>
+        <li><span class="icon">⏱️</span> Timer counts down each turn — it gets shorter as your chain grows!</li>
+        <li><span class="icon">💡</span> You have <strong>2 hints</strong> per game — use them wisely</li>
+        <li><span class="icon">🔄</span> No repeating words — each compound can only be used once</li>
+        <li><span class="icon">📋</span> Share your score and badge when the chain breaks!</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-primary" id="start-btn">Start Weaving →</button>
+
+  </section>
+
+  <!-- ══════════════════════ GAME SCREEN ══════════════════════ -->
+  <section class="screen" id="screen-game">
+
+    <!-- Top bar -->
+    <div class="game-header">
+      <div class="chain-counter">
+        <span class="chain-number" id="chain-num">0</span>
+        <div>
+          <div class="chain-label">Chain</div>
+          <div id="diff-label" class="difficulty-tag diff-easy">Easy</div>
+        </div>
+      </div>
+
+      <button class="hint-btn" id="hint-btn">
+        💡 Hint <span id="hint-count">2</span>
+      </button>
+    </div>
+
+    <!-- Timer ring -->
+    <div class="timer-wrap">
+      <svg class="timer-ring-svg" width="90" height="90" viewBox="0 0 90 90">
+        <circle class="timer-track" cx="45" cy="45" r="40"/>
+        <circle class="timer-progress" id="timer-progress" cx="45" cy="45" r="40"/>
+      </svg>
+      <span class="timer-countdown" id="timer-countdown">20</span>
+    </div>
+
+    <!-- Bridge display -->
+    <div class="bridge-display">
+      <div class="bridge-label">Start your word with</div>
+      <span class="bridge-word" id="bridge-word">sun</span>
+      <span class="bridge-arrow">→</span>
+      <span style="font-size:1.8rem;color:var(--border);">?</span>
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+      <input
+        type="text"
+        id="word-input"
+        placeholder="type a compound word…"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="none"
+        spellcheck="false"
+      />
+      <button id="submit-btn" title="Submit">→</button>
+    </div>
+
+    <!-- Feedback -->
+    <div class="feedback-msg" id="feedback-msg"></div>
+
+    <!-- Chain trail -->
+    <div class="chain-trail-wrap">
+      <div class="chain-trail" id="chain-trail">
+        <span class="chain-trail-empty">Your chain will appear here…</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════ END SCREEN ══════════════════════ -->
+  <section class="screen" id="screen-end">
+
+    <div class="end-header">
+      <span class="end-badge-icon" id="end-badge-icon">🪢</span>
+      <div class="end-badge-name" id="end-badge-name">Tangled Beginner</div>
+    </div>
+
+    <div class="end-score-box">
+      <div class="end-score-label">Chain Length</div>
+      <div class="end-score-number" id="end-score-num">0</div>
+      <div class="end-score-sub">compound words linked</div>
+    </div>
+
+    <div class="end-chain-display">
+      <h3>Your Chain</h3>
+      <div class="end-chain-words" id="end-chain-words"></div>
+    </div>
+
+    <div class="end-actions">
+      <button class="btn btn-secondary" id="share-btn">📋 Share Score</button>
+      <button class="btn btn-primary" id="play-again-btn">Play Again →</button>
+    </div>
+
+    <div class="feedback-msg" id="feedback-msg-end" style="margin-top:4px;text-align:center;"></div>
+
+  </section>
+
+  <!-- Toast -->
+  <div class="share-toast" id="share-toast">Copied to clipboard!</div>
+
+  <script src="game.js"></script>
+</body>
+</html>
